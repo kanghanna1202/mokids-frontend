@@ -12,7 +12,7 @@ function Login(){
     return (
         <div className="container">
             <div className="box">
-                <h1>시작하기</h1>
+                <h1>시작하기😆</h1>
                 <form>
                     <input placeholder="아이디" value={id} onChange={(e)=>setId(e.target.value)}/>
                     <input placeholder="비밀번호" type="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
