@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom"
 import "./style.css"
-import axios from "axios"
+import {getRequest} from "../../api"
 
 function Login(){
     const [id,setId] = useState();
@@ -9,7 +9,7 @@ function Login(){
 
     function onSubmit(e){
         e.preventDefault();
-        axios.post("http://127.0.0.1", {id, password}).then(()=>{alert("로그인 성공!");})
+        getRequest().post("/login/", {id, password}).then(()=>{alert("로그인 성공!");})
     }
     return (
         <div className="container">

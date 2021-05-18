@@ -12,7 +12,7 @@ function Register(){
         if(password !== passwordConfirm) {
             return alert('비밀번호가 달라요!')
           }
-        axios.post("http://127.0.0.1", {id, password}).then(()=>{alert("회원가입 성공!");})
+        axios.post("http://127.0.0.1/register/", {id, password}).then(()=>{alert("회원가입 성공!");})
     }
     return (
         <div className="container">
