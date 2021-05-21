@@ -11,8 +11,20 @@ function Register(){
         e.preventDefault();
         if(password !== passwordConfirm) {
             return alert('비밀번호가 달라요!')
-          }
-        axios.post("http://127.0.0.1:8000/register/", {id, password}).then(()=>{alert("회원가입 성공!");})
+        }
+        const client= axios.create({
+            baseURL: "http://localhost:8000"
+        });
+        const data={
+            username: id, 
+            password
+        }
+        client.post("/user/register/", data)
+            .then((res)=>{
+                localStorage.setItem("access", res.data.access)
+                alert("회원가입 성공!")
+                console.log(res.data);})
+            .catch((err)=>{alert("실패다이말이야")})
     }
     return (
         <div className="container">

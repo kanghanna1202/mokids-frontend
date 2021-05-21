@@ -30,6 +30,14 @@ h2{
     gap: 1rem;
 }
 
+.movieList{
+    display: flex;
+    margin-left: 100px;
+}
+.movieList>img{
+    margin: 15px;
+}
+
 .todayMovie{
     width: 100vw;
     display: flex;

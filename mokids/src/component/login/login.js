@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom"
 import "./style.css"
 import {getRequest} from "../../api"
+import axios from "axios"
 
 function Login(){
     const [id,setId] = useState();
@@ -9,7 +10,19 @@ function Login(){
 
     function onSubmit(e){
         e.preventDefault();
-        getRequest().post("/login/", {id, password}).then(()=>{alert("로그인 성공!");})
+        const client= axios.create({
+            baseURL: "http://localhost:8000"
+        });
+        const data={
+            username: id, 
+            password
+        }
+        client.post("/user/login/", data)
+            .then((res)=>{
+                localStorage.setItem("access", res.data.access)
+                alert("로그인 성공!")
+                console.log(res.data);})
+            .catch((err)=>{alert("실패다이말이야")})
     }
     return (
         <div className="container">
