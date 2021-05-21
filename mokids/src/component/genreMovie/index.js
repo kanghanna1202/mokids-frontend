@@ -21,7 +21,7 @@ function GenreMovie({match}){
             <header><img src={logo}></img></header>
             <h2>{match.params.name}</h2>
             <div className="genreMovie">
-                {movieData.map((e,i)=><img className="poster" src={e} key={i}></img>)}
+                {movieData.map((e,i)=><img className="poster" src={e} key={i} onClick={()=>history.push(`movie/${e.id}`)}></img>)}
             </div>
         </div>
         </>

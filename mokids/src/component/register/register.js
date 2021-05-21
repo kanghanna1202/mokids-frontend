@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom"
+import {useHistory} from "react-router"
 import "./style.css"
 import axios from "axios"
 
@@ -7,6 +8,7 @@ function Register(){
     const [id,setId] = useState();
     const [password,setPassword] = useState();
     const [passwordConfirm, setPasswordConfirm] = useState();
+    const history = useHistory();
     function onSubmit(e){
         e.preventDefault();
         if(password !== passwordConfirm) {
@@ -23,7 +25,9 @@ function Register(){
             .then((res)=>{
                 localStorage.setItem("access", res.data.access)
                 alert("회원가입 성공!")
-                console.log(res.data);})
+                console.log(res.data);
+                history.push("/login")
+            })
             .catch((err)=>{alert("실패다이말이야")})
     }
     return (

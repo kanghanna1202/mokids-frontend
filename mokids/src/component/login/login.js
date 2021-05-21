@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom"
 import "./style.css"
-import {getRequest} from "../../api"
+import {useHistory} from "react-router"
 import axios from "axios"
 
 function Login(){
     const [id,setId] = useState();
     const [password,setPassword] = useState();
+    const history = useHistory();
 
     function onSubmit(e){
         e.preventDefault();
@@ -21,7 +22,8 @@ function Login(){
             .then((res)=>{
                 localStorage.setItem("access", res.data.access)
                 alert("로그인 성공!")
-                console.log(res.data);})
+                history.push("/main")
+            ;})
             .catch((err)=>{alert("실패다이말이야")})
     }
     return (
