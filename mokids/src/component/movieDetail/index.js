@@ -10,14 +10,25 @@ function MovieDetail({match}){
         genre: "",
         keywords: "",
         runtime: "",
-        plot: ""
+        plot: "",
+        watched:false
     });
+    const [watched,setWatched]=useState(false)
     useEffect(()=>{
         getRequest().get(`/movie/${match.params.id}`).then((res)=>{
-            setMovieData(res.data)
-            console.log(res.data)
+            setMovieData(res.data);
+            setWatched(res.data.watched);
         });
     }, [])
+
+    const onclick=async()=>{
+        try{
+            const {data}=await getRequest().get(`movie/watched/${match.params.id}`);
+            setWatched(data.watched)
+        }catch{
+
+        }
+    }
     
     return (
         <>
@@ -34,6 +45,9 @@ function MovieDetail({match}){
                         <p>{movieData.keywords}</p>
                         <p>{movieData.runtime}</p>
                         <p>{movieData.plot}</p>
+                        <div className="watchedButton">
+                            <button className="watched" onClick={onclick} style={{backgroundColor: watched==="true"?"#4CAF50":"white"}}>봤어요</button>
+                        </div>
                     </div>
                 </div>
             </div>
